@@ -74,19 +74,22 @@
                         "description": ""
                     },
                     {
-                        "name": "ref_level_name",
+                        "name": "ref_level_names",
                         "in": "query",
                         "schema": {
                             "anyOf": [
                                 {
-                                    "type": "string"
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
                                 },
                                 {
                                     "type": "null"
                                 }
                             ],
                             "default": null,
-                            "title": "Ref Level Name"
+                            "title": "Ref Level Names"
                         },
                         "required": false,
                         "description": ""
@@ -299,18 +302,22 @@
                         "description": ""
                     },
                     {
-                        "name": "transaction_type",
+                        "name": "transaction_types",
                         "in": "query",
                         "schema": {
                             "anyOf": [
                                 {
-                                    "$ref": "#/components/schemas/GetTransactionsParams.1814de5.TransactionTypes"
+                                    "items": {
+                                        "$ref": "#/components/schemas/GetTransactionsParams.1814de5.TransactionTypes"
+                                    },
+                                    "type": "array"
                                 },
                                 {
                                     "type": "null"
                                 }
                             ],
-                            "default": null
+                            "default": null,
+                            "title": "Transaction Types"
                         },
                         "required": false,
                         "description": ""
@@ -688,18 +695,22 @@
                         "description": ""
                     },
                     {
-                        "name": "transaction_type",
+                        "name": "transaction_types",
                         "in": "query",
                         "schema": {
                             "anyOf": [
                                 {
-                                    "$ref": "#/components/schemas/GetTransactionsParams.1814de5.TransactionTypes"
+                                    "items": {
+                                        "$ref": "#/components/schemas/GetTransactionsParams.1814de5.TransactionTypes"
+                                    },
+                                    "type": "array"
                                 },
                                 {
                                     "type": "null"
                                 }
                             ],
-                            "default": null
+                            "default": null,
+                            "title": "Transaction Types"
                         },
                         "required": false,
                         "description": ""
@@ -1768,6 +1779,33 @@
                 "title": "ApiOKResponse[ArticlesResponse]",
                 "type": "object"
             },
+            "ApiOKResponse[ArticlesResponse].f37b0f0.ArticleResponse": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "content": {
+                        "title": "Content",
+                        "type": "string"
+                    },
+                    "tag": {
+                        "$ref": "#/components/schemas/ApiOKResponse[TagsResponse].f37b0f0.TagResponse"
+                    }
+                },
+                "required": [
+                    "id",
+                    "title",
+                    "content",
+                    "tag"
+                ],
+                "title": "ArticleResponse",
+                "type": "object"
+            },
             "ApiOKResponse[ArticlesResponse].f37b0f0.ArticlesResponse": {
                 "properties": {
                     "current_page": {
@@ -1780,7 +1818,7 @@
                     },
                     "articles": {
                         "items": {
-                            "$ref": "#/components/schemas/ApiOKResponse[ArticleResponse].f37b0f0.ArticleResponse"
+                            "$ref": "#/components/schemas/ApiOKResponse[ArticlesResponse].f37b0f0.ArticleResponse"
                         },
                         "title": "Articles",
                         "type": "array"
@@ -3195,6 +3233,36 @@
                 "title": "ApiOKResponse[UsersResponse]",
                 "type": "object"
             },
+            "ApiOKResponse[UsersResponse].f37b0f0.BalancesResponse": {
+                "properties": {
+                    "balance": {
+                        "$ref": "#/components/schemas/ApiOKResponse[UsersResponse].f37b0f0.WithChanges"
+                    },
+                    "adv_balance": {
+                        "$ref": "#/components/schemas/ApiOKResponse[UsersResponse].f37b0f0.WithChanges"
+                    },
+                    "bonus_balance": {
+                        "$ref": "#/components/schemas/ApiOKResponse[UsersResponse].f37b0f0.WithChanges"
+                    },
+                    "replenishments_in_system": {
+                        "title": "Replenishments In System",
+                        "type": "number"
+                    },
+                    "withdraws_from_system": {
+                        "title": "Withdraws From System",
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "balance",
+                    "adv_balance",
+                    "bonus_balance",
+                    "replenishments_in_system",
+                    "withdraws_from_system"
+                ],
+                "title": "BalancesResponse",
+                "type": "object"
+            },
             "ApiOKResponse[UsersResponse].f37b0f0.UserResponse": {
                 "properties": {
                     "id": {
@@ -3226,7 +3294,7 @@
                         "$ref": "#/components/schemas/ApiOKResponse[UsersResponse].f37b0f0.WithChanges"
                     },
                     "balances": {
-                        "$ref": "#/components/schemas/ApiOKResponse[UserFinancialsResponse].f37b0f0.BalancesResponse"
+                        "$ref": "#/components/schemas/ApiOKResponse[UsersResponse].f37b0f0.BalancesResponse"
                     }
                 },
                 "required": [
@@ -3426,16 +3494,20 @@
                         "title": "Order Type",
                         "type": "string"
                     },
-                    "transaction_type": {
+                    "transaction_types": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/GetTransactionsParams.1814de5.TransactionTypes"
+                                "items": {
+                                    "$ref": "#/components/schemas/GetTransactionsParams.1814de5.TransactionTypes"
+                                },
+                                "type": "array"
                             },
                             {
                                 "type": "null"
                             }
                         ],
-                        "default": null
+                        "default": null,
+                        "title": "Transaction Types"
                     },
                     "search": {
                         "anyOf": [
@@ -3494,17 +3566,20 @@
                         "title": "Order By",
                         "type": "string"
                     },
-                    "ref_level_name": {
+                    "ref_level_names": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
                             },
                             {
                                 "type": "null"
                             }
                         ],
                         "default": null,
-                        "title": "Ref Level Name"
+                        "title": "Ref Level Names"
                     },
                     "order_type": {
                         "default": "asc",
