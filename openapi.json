@@ -6,6 +6,9 @@
   },
   "tags": [
     {
+      "name": "dashboard"
+    },
+    {
       "name": "admin"
     },
     {
@@ -18,7 +21,7 @@
         "summary": "/statistics/sales",
         "operationId": "get__statistics_sales",
         "description": "<br/><b>Query</b>: <a href='/schemas/StatisticsV2Params.d474d6d'>StatisticsV2Params</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GraphResponse].4689802'>ApiOKResponse[GraphResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
-        "tags": [],
+        "tags": ["dashboard"],
         "parameters": [
           {
             "name": "group",
