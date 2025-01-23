@@ -20,7 +20,7 @@
       "get": {
         "summary": "/statistics/sales",
         "operationId": "get__statistics_sales",
-        "description": "<br/><b>Query</b>: <a href='/schemas/StatisticsV2Params.d474d6d'>StatisticsV2Params</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GraphResponse].4689802'>ApiOKResponse[GraphResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "description": "<br/><b>Query</b>: <a href='/schemas/StatisticsParams.d474d6d'>StatisticsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GraphWithTotalResponse].4689802'>ApiOKResponse[GraphWithTotalResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
         "tags": ["dashboard"],
         "parameters": [
           {
@@ -29,7 +29,220 @@
             "schema": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/StatisticsV2Params.d474d6d.GroupEnum"
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+                }
+              ],
+              "default": "days",
+              "description": "Группировка статистики"
+            },
+            "required": false,
+            "description": "Группировка статистики"
+          },
+          {
+            "name": "from_dt",
+            "in": "query",
+            "schema": {
+              "description": "Начало периода",
+              "format": "date",
+              "title": "From Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Начало периода"
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "description": "Конец периода",
+              "format": "date",
+              "title": "To Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Конец периода"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[GraphWithTotalResponse].4689802"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/statistics/main_balance": {
+      "get": {
+        "summary": "/statistics/main_balance",
+        "operationId": "get__statistics_main_balance",
+        "description": "<br/><b>Query</b>: <a href='/schemas/StatisticsParams.d474d6d'>StatisticsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GraphResponse].4689802'>ApiOKResponse[GraphResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "tags": ["dashboard"],
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+                }
+              ],
+              "default": "days",
+              "description": "Группировка статистики"
+            },
+            "required": false,
+            "description": "Группировка статистики"
+          },
+          {
+            "name": "from_dt",
+            "in": "query",
+            "schema": {
+              "description": "Начало периода",
+              "format": "date",
+              "title": "From Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Начало периода"
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "description": "Конец периода",
+              "format": "date",
+              "title": "To Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Конец периода"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[GraphResponse].4689802"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/statistics/adv_balance": {
+      "get": {
+        "summary": "/statistics/adv_balance",
+        "operationId": "get__statistics_adv_balance",
+        "description": "<br/><b>Query</b>: <a href='/schemas/StatisticsParams.d474d6d'>StatisticsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GraphResponse].4689802'>ApiOKResponse[GraphResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "tags": ["dashboard"],
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+                }
+              ],
+              "default": "days",
+              "description": "Группировка статистики"
+            },
+            "required": false,
+            "description": "Группировка статистики"
+          },
+          {
+            "name": "from_dt",
+            "in": "query",
+            "schema": {
+              "description": "Начало периода",
+              "format": "date",
+              "title": "From Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Начало периода"
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "description": "Конец периода",
+              "format": "date",
+              "title": "To Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Конец периода"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[GraphResponse].4689802"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/statistics/partners": {
+      "get": {
+        "summary": "/statistics/partners",
+        "operationId": "get__statistics_partners",
+        "description": "<br/><b>Query</b>: <a href='/schemas/StatisticsParams.d474d6d'>StatisticsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GraphResponse].4689802'>ApiOKResponse[GraphResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "tags": ["dashboard"],
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
                 }
               ],
               "default": "days",
@@ -2250,28 +2463,99 @@
             "title": "Dates",
             "type": "array"
           },
-          "all_commission": {
-            "description": "Все комиссии",
-            "title": "All Commission",
+          "total_income": {
+            "default": 0,
+            "description": "Общий доход",
+            "title": "Total Income",
             "type": "number"
           },
-          "all_wastes": {
-            "description": "Все расходы",
-            "title": "All Wastes",
-            "type": "number"
-          },
-          "all_shows": {
-            "description": "Все показания",
-            "title": "All Shows",
-            "type": "number"
-          },
-          "profit": {
-            "description": "Прибыль",
-            "title": "Profit",
+          "total_wastes": {
+            "default": 0,
+            "description": "Общие расходы",
+            "title": "Total Wastes",
             "type": "number"
           }
         },
         "title": "GraphResponse",
+        "type": "object"
+      },
+      "ApiOKResponse[GraphWithTotalResponse].4689802": {
+        "properties": {
+          "status": {
+            "examples": ["success"],
+            "title": "Status",
+            "type": "string"
+          },
+          "code": {
+            "examples": [0],
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "examples": ["OK"],
+            "title": "Message",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiOKResponse[GraphWithTotalResponse].4689802.GraphWithTotalResponse"
+          }
+        },
+        "required": ["status", "code", "message", "data"],
+        "title": "ApiOKResponse[GraphWithTotalResponse]",
+        "type": "object"
+      },
+      "ApiOKResponse[GraphWithTotalResponse].4689802.GraphWithTotalResponse": {
+        "properties": {
+          "income": {
+            "description": "Доход",
+            "items": {
+              "type": "number"
+            },
+            "title": "Income",
+            "type": "array"
+          },
+          "wastes": {
+            "description": "Расходы",
+            "items": {
+              "type": "number"
+            },
+            "title": "Wastes",
+            "type": "array"
+          },
+          "dates": {
+            "description": "Дата",
+            "items": {
+              "type": "string"
+            },
+            "title": "Dates",
+            "type": "array"
+          },
+          "total_income": {
+            "default": 0,
+            "description": "Общий доход",
+            "title": "Total Income",
+            "type": "number"
+          },
+          "total_wastes": {
+            "default": 0,
+            "description": "Общие расходы",
+            "title": "Total Wastes",
+            "type": "number"
+          },
+          "total_commission": {
+            "default": 0,
+            "description": "Все комиссии",
+            "title": "Total Commission",
+            "type": "number"
+          },
+          "total_shows": {
+            "default": 0,
+            "description": "Все показания",
+            "title": "Total Shows",
+            "type": "number"
+          }
+        },
+        "title": "GraphWithTotalResponse",
         "type": "object"
       },
       "ApiOKResponse[GreedAndFearIndexResponse].4689802": {
@@ -4203,12 +4487,12 @@
         "title": "PathUserStructureSettingsRequest",
         "type": "object"
       },
-      "StatisticsV2Params.d474d6d": {
+      "StatisticsParams.d474d6d": {
         "properties": {
           "group": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StatisticsV2Params.d474d6d.GroupEnum"
+                "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
               }
             ],
             "default": "days",
@@ -4228,10 +4512,10 @@
           }
         },
         "required": ["from_dt", "to_dt"],
-        "title": "StatisticsV2Params",
+        "title": "StatisticsParams",
         "type": "object"
       },
-      "StatisticsV2Params.d474d6d.GroupEnum": {
+      "StatisticsParams.d474d6d.GroupEnum": {
         "enum": ["days", "weeks", "months"],
         "title": "GroupEnum",
         "type": "string"
