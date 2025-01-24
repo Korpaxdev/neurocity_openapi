@@ -460,6 +460,95 @@
         }
       }
     },
+    "/transactions": {
+      "get": {
+        "summary": "/transactions",
+        "operationId": "get__transactions",
+        "description": "<br/><b>Query</b>: <a href='/schemas/TransactionsParams.d474d6d'>TransactionsParams</a><br/><br/>",
+        "tags": ["dashboard"],
+        "parameters": [
+          {
+            "name": "from_dt",
+            "in": "query",
+            "schema": {
+              "description": "Начало периода",
+              "format": "date",
+              "title": "From Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Начало периода"
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "description": "Конец периода",
+              "format": "date",
+              "title": "To Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Конец периода"
+          },
+          {
+            "name": "balance_type",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.BalanceTypes"
+                }
+              ],
+              "default": null,
+              "description": "Тип баланса"
+            },
+            "required": false,
+            "description": "Тип баланса"
+          },
+          {
+            "name": "transaction_type",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionTypes"
+                }
+              ],
+              "default": null,
+              "description": "Тип транзакции"
+            },
+            "required": false,
+            "description": "Тип транзакции"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "description": "Лимит",
+              "title": "Limit",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Лимит"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "description": "Сдвиг",
+              "title": "Offset",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Сдвиг"
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/admin/users": {
       "get": {
         "summary": "/admin/users",
@@ -2914,6 +3003,11 @@
       },
       "ApiOKResponse[OperationsResponse].4689802.OperationResponse": {
         "properties": {
+          "id": {
+            "description": "ID",
+            "title": "Id",
+            "type": "integer"
+          },
           "created_at": {
             "description": "Дата",
             "format": "date-time",
@@ -2955,6 +3049,7 @@
           }
         },
         "required": [
+          "id",
           "created_at",
           "company",
           "sales_sum",
@@ -4912,6 +5007,55 @@
         },
         "required": ["name"],
         "title": "TagRequest",
+        "type": "object"
+      },
+      "TransactionsParams.d474d6d": {
+        "properties": {
+          "from_dt": {
+            "description": "Начало периода",
+            "format": "date",
+            "title": "From Dt",
+            "type": "string"
+          },
+          "to_dt": {
+            "description": "Конец периода",
+            "format": "date",
+            "title": "To Dt",
+            "type": "string"
+          },
+          "balance_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.BalanceTypes"
+              }
+            ],
+            "default": null,
+            "description": "Тип баланса"
+          },
+          "transaction_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionTypes"
+              }
+            ],
+            "default": null,
+            "description": "Тип транзакции"
+          },
+          "limit": {
+            "default": 10,
+            "description": "Лимит",
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Сдвиг",
+            "title": "Offset",
+            "type": "integer"
+          }
+        },
+        "required": ["from_dt", "to_dt"],
+        "title": "TransactionsParams",
         "type": "object"
       },
       "UploadImageRequest.1814de5": {
