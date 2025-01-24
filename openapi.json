@@ -24,21 +24,6 @@
         "tags": ["dashboard"],
         "parameters": [
           {
-            "name": "group",
-            "in": "query",
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
-                }
-              ],
-              "default": "days",
-              "description": "Группировка статистики"
-            },
-            "required": false,
-            "description": "Группировка статистики"
-          },
-          {
             "name": "from_dt",
             "in": "query",
             "schema": {
@@ -61,6 +46,21 @@
             },
             "required": true,
             "description": "Конец периода"
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+                }
+              ],
+              "default": "days",
+              "description": "Группировка статистики"
+            },
+            "required": false,
+            "description": "Группировка статистики"
           }
         ],
         "responses": {
@@ -95,21 +95,6 @@
         "tags": ["dashboard"],
         "parameters": [
           {
-            "name": "group",
-            "in": "query",
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
-                }
-              ],
-              "default": "days",
-              "description": "Группировка статистики"
-            },
-            "required": false,
-            "description": "Группировка статистики"
-          },
-          {
             "name": "from_dt",
             "in": "query",
             "schema": {
@@ -132,6 +117,21 @@
             },
             "required": true,
             "description": "Конец периода"
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+                }
+              ],
+              "default": "days",
+              "description": "Группировка статистики"
+            },
+            "required": false,
+            "description": "Группировка статистики"
           }
         ],
         "responses": {
@@ -166,21 +166,6 @@
         "tags": ["dashboard"],
         "parameters": [
           {
-            "name": "group",
-            "in": "query",
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
-                }
-              ],
-              "default": "days",
-              "description": "Группировка статистики"
-            },
-            "required": false,
-            "description": "Группировка статистики"
-          },
-          {
             "name": "from_dt",
             "in": "query",
             "schema": {
@@ -203,6 +188,21 @@
             },
             "required": true,
             "description": "Конец периода"
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+                }
+              ],
+              "default": "days",
+              "description": "Группировка статистики"
+            },
+            "required": false,
+            "description": "Группировка статистики"
           }
         ],
         "responses": {
@@ -237,6 +237,30 @@
         "tags": ["dashboard"],
         "parameters": [
           {
+            "name": "from_dt",
+            "in": "query",
+            "schema": {
+              "description": "Начало периода",
+              "format": "date",
+              "title": "From Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Начало периода"
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "description": "Конец периода",
+              "format": "date",
+              "title": "To Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Конец периода"
+          },
+          {
             "name": "group",
             "in": "query",
             "schema": {
@@ -250,7 +274,39 @@
             },
             "required": false,
             "description": "Группировка статистики"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[GraphResponse].4689802"
+                }
+              }
+            }
           },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/grouped_operations": {
+      "get": {
+        "summary": "/grouped_operations",
+        "operationId": "get__grouped_operations",
+        "description": "<br/><b>Query</b>: <a href='/schemas/OperationsParams.d474d6d'>OperationsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[GroupedOperationsResponse].4689802'>ApiOKResponse[GroupedOperationsResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "tags": ["dashboard"],
+        "parameters": [
           {
             "name": "from_dt",
             "in": "query",
@@ -274,6 +330,30 @@
             },
             "required": true,
             "description": "Конец периода"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "description": "Лимит",
+              "title": "Limit",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Лимит"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "description": "Сдвиг",
+              "title": "Offset",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Сдвиг"
           }
         ],
         "responses": {
@@ -282,7 +362,87 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiOKResponse[GraphResponse].4689802"
+                  "$ref": "#/components/schemas/ApiOKResponse[GroupedOperationsResponse].4689802"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/operations": {
+      "get": {
+        "summary": "/operations",
+        "operationId": "get__operations",
+        "description": "<br/><b>Query</b>: <a href='/schemas/OperationsParams.d474d6d'>OperationsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[OperationsResponse].4689802'>ApiOKResponse[OperationsResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "tags": ["dashboard"],
+        "parameters": [
+          {
+            "name": "from_dt",
+            "in": "query",
+            "schema": {
+              "description": "Начало периода",
+              "format": "date",
+              "title": "From Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Начало периода"
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "description": "Конец периода",
+              "format": "date",
+              "title": "To Dt",
+              "type": "string"
+            },
+            "required": true,
+            "description": "Конец периода"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "description": "Лимит",
+              "title": "Limit",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Лимит"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "description": "Сдвиг",
+              "title": "Offset",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Сдвиг"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[OperationsResponse].4689802"
                 }
               }
             }
@@ -2587,6 +2747,89 @@
         "title": "GreedAndFearIndexResponse",
         "type": "number"
       },
+      "ApiOKResponse[GroupedOperationsResponse].4689802": {
+        "properties": {
+          "status": {
+            "examples": ["success"],
+            "title": "Status",
+            "type": "string"
+          },
+          "code": {
+            "examples": [0],
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "examples": ["OK"],
+            "title": "Message",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiOKResponse[GroupedOperationsResponse].4689802.GroupedOperationsResponse"
+          }
+        },
+        "required": ["status", "code", "message", "data"],
+        "title": "ApiOKResponse[GroupedOperationsResponse]",
+        "type": "object"
+      },
+      "ApiOKResponse[GroupedOperationsResponse].4689802.GroupedOperationResponse": {
+        "properties": {
+          "created_at": {
+            "description": "Дата",
+            "format": "date",
+            "title": "Created At",
+            "type": "string"
+          },
+          "min_commission": {
+            "description": "Минимальная комиссия",
+            "title": "Min Commission",
+            "type": "number"
+          },
+          "max_commission": {
+            "description": "Максимальная комиссия",
+            "title": "Max Commission",
+            "type": "number"
+          },
+          "neurocity_comission": {
+            "description": "Комиссия Нейросити",
+            "title": "Neurocity Comission",
+            "type": "number"
+          },
+          "user_commission": {
+            "description": "Комиссия пользователя",
+            "title": "User Commission",
+            "type": "number"
+          },
+          "sales_count": {
+            "description": "Количество продаж",
+            "title": "Sales Count",
+            "type": "integer"
+          },
+          "sales_sum": {
+            "description": "Сумма продаж",
+            "title": "Sales Sum",
+            "type": "number"
+          }
+        },
+        "required": [
+          "created_at",
+          "min_commission",
+          "max_commission",
+          "neurocity_comission",
+          "user_commission",
+          "sales_count",
+          "sales_sum"
+        ],
+        "title": "GroupedOperationResponse",
+        "type": "object"
+      },
+      "ApiOKResponse[GroupedOperationsResponse].4689802.GroupedOperationsResponse": {
+        "items": {
+          "$ref": "#/components/schemas/ApiOKResponse[GroupedOperationsResponse].4689802.GroupedOperationResponse"
+        },
+        "title": "GroupedOperationsResponse",
+        "type": "array"
+      },
       "ApiOKResponse[MoneyMovementGraphResponse].4689802": {
         "properties": {
           "status": {
@@ -2621,6 +2864,114 @@
         },
         "title": "MoneyMovementGraphResponse",
         "type": "object"
+      },
+      "ApiOKResponse[OperationsResponse].4689802": {
+        "properties": {
+          "status": {
+            "examples": ["success"],
+            "title": "Status",
+            "type": "string"
+          },
+          "code": {
+            "examples": [0],
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "examples": ["OK"],
+            "title": "Message",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiOKResponse[OperationsResponse].4689802.OperationsResponse"
+          }
+        },
+        "required": ["status", "code", "message", "data"],
+        "title": "ApiOKResponse[OperationsResponse]",
+        "type": "object"
+      },
+      "ApiOKResponse[OperationsResponse].4689802.CompanyResponse": {
+        "properties": {
+          "id": {
+            "description": "ID",
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Название",
+            "title": "Name",
+            "type": "string"
+          },
+          "logo": {
+            "description": "Логотип",
+            "title": "Logo",
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "logo"],
+        "title": "CompanyResponse",
+        "type": "object"
+      },
+      "ApiOKResponse[OperationsResponse].4689802.OperationResponse": {
+        "properties": {
+          "created_at": {
+            "description": "Дата",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "company": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiOKResponse[OperationsResponse].4689802.CompanyResponse"
+              }
+            ],
+            "description": "Компания"
+          },
+          "sales_sum": {
+            "description": "Сумма продаж",
+            "title": "Sales Sum",
+            "type": "number"
+          },
+          "commission": {
+            "description": "Комиссия",
+            "title": "Commission",
+            "type": "number"
+          },
+          "neurocity_commission": {
+            "description": "Комиссия Нейросити",
+            "title": "Neurocity Commission",
+            "type": "number"
+          },
+          "user_commission": {
+            "description": "Комиссия пользователя",
+            "title": "User Commission",
+            "type": "number"
+          },
+          "status": {
+            "description": "Статус",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "created_at",
+          "company",
+          "sales_sum",
+          "commission",
+          "neurocity_commission",
+          "user_commission",
+          "status"
+        ],
+        "title": "OperationResponse",
+        "type": "object"
+      },
+      "ApiOKResponse[OperationsResponse].4689802.OperationsResponse": {
+        "items": {
+          "$ref": "#/components/schemas/ApiOKResponse[OperationsResponse].4689802.OperationResponse"
+        },
+        "title": "OperationsResponse",
+        "type": "array"
       },
       "ApiOKResponse[RefLevelsResponse].4689802": {
         "properties": {
@@ -4151,6 +4502,37 @@
         "title": "GreedAndFearIndexParams",
         "type": "object"
       },
+      "OperationsParams.d474d6d": {
+        "properties": {
+          "from_dt": {
+            "description": "Начало периода",
+            "format": "date",
+            "title": "From Dt",
+            "type": "string"
+          },
+          "to_dt": {
+            "description": "Конец периода",
+            "format": "date",
+            "title": "To Dt",
+            "type": "string"
+          },
+          "limit": {
+            "default": 10,
+            "description": "Лимит",
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Сдвиг",
+            "title": "Offset",
+            "type": "integer"
+          }
+        },
+        "required": ["from_dt", "to_dt"],
+        "title": "OperationsParams",
+        "type": "object"
+      },
       "PatchShopRequest.1814de5": {
         "properties": {
           "name": {
@@ -4489,15 +4871,6 @@
       },
       "StatisticsParams.d474d6d": {
         "properties": {
-          "group": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
-              }
-            ],
-            "default": "days",
-            "description": "Группировка статистики"
-          },
           "from_dt": {
             "description": "Начало периода",
             "format": "date",
@@ -4509,6 +4882,15 @@
             "format": "date",
             "title": "To Dt",
             "type": "string"
+          },
+          "group": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatisticsParams.d474d6d.GroupEnum"
+              }
+            ],
+            "default": "days",
+            "description": "Группировка статистики"
           }
         },
         "required": ["from_dt", "to_dt"],
