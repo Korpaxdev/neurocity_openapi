@@ -464,7 +464,7 @@
       "get": {
         "summary": "/transactions",
         "operationId": "get__transactions",
-        "description": "<br/><b>Query</b>: <a href='/schemas/TransactionsParams.d474d6d'>TransactionsParams</a><br/><br/>",
+        "description": "<br/><b>Query</b>: <a href='/schemas/TransactionsParams.d474d6d'>TransactionsParams</a><br/><b>200</b>: <a href='/schemas/ApiOKResponse[TransactionsResponse].4689802'>ApiOKResponse[TransactionsResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
         "tags": ["dashboard"],
         "parameters": [
           {
@@ -497,7 +497,7 @@
             "schema": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.BalanceTypes"
+                  "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.BalanceTypes"
                 }
               ],
               "default": null,
@@ -512,7 +512,7 @@
             "schema": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionTypes"
+                  "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.TransactionTypes"
                 }
               ],
               "default": null,
@@ -546,7 +546,28 @@
             "description": "Сдвиг"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/admin/users": {
@@ -3582,12 +3603,30 @@
         "title": "ApiOKResponse[TransactionResponse]",
         "type": "object"
       },
+      "ApiOKResponse[TransactionResponse].4689802.BalanceTypes": {
+        "enum": ["main", "advertisement", "bonus"],
+        "title": "BalanceTypes",
+        "type": "string"
+      },
+      "ApiOKResponse[TransactionResponse].4689802.Captions": {
+        "enum": [
+          "adv_balance_replenishment",
+          "adv_balance_transfer",
+          "adv_balance_work",
+          "balance_withdraw",
+          "bonus_applied",
+          "Referral operation percent",
+          "admin_balance_change"
+        ],
+        "title": "Captions",
+        "type": "string"
+      },
       "ApiOKResponse[TransactionResponse].4689802.TransactionDetailsResponse": {
         "properties": {
           "caption": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.Captions"
+                "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.Captions"
               },
               {
                 "type": "string"
@@ -3625,10 +3664,10 @@
             "type": "string"
           },
           "transaction_type": {
-            "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionTypes"
+            "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.TransactionTypes"
           },
           "balance_type": {
-            "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.BalanceTypes"
+            "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.BalanceTypes"
           },
           "details": {
             "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.TransactionDetailsResponse"
@@ -3664,6 +3703,11 @@
         "title": "TransactionResponse",
         "type": "object"
       },
+      "ApiOKResponse[TransactionResponse].4689802.TransactionTypes": {
+        "enum": ["replenishment", "withdraw", "ref_award"],
+        "title": "TransactionTypes",
+        "type": "string"
+      },
       "ApiOKResponse[TransactionsResponse].4689802": {
         "properties": {
           "status": {
@@ -3689,132 +3733,70 @@
         "title": "ApiOKResponse[TransactionsResponse]",
         "type": "object"
       },
-      "ApiOKResponse[TransactionsResponse].4689802.BalanceTypes": {
-        "enum": ["main", "advertisement", "bonus"],
-        "title": "BalanceTypes",
-        "type": "string"
-      },
-      "ApiOKResponse[TransactionsResponse].4689802.Captions": {
-        "enum": [
-          "adv_balance_replenishment",
-          "adv_balance_transfer",
-          "adv_balance_work",
-          "balance_withdraw",
-          "bonus_applied",
-          "Referral operation percent",
-          "admin_balance_change"
-        ],
-        "title": "Captions",
-        "type": "string"
-      },
-      "ApiOKResponse[TransactionsResponse].4689802.TransactionDetailsResponse": {
-        "properties": {
-          "caption": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.Captions"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Caption"
-          }
-        },
-        "required": ["caption"],
-        "title": "TransactionDetailsResponse",
-        "type": "object"
-      },
       "ApiOKResponse[TransactionsResponse].4689802.TransactionResponse": {
         "properties": {
           "id": {
+            "description": "ID",
             "title": "Id",
             "type": "integer"
           },
-          "name_surname": {
-            "title": "Name Surname",
-            "type": "string"
-          },
-          "email": {
-            "title": "Email",
-            "type": "string"
-          },
           "created_at": {
+            "description": "Дата",
             "format": "date-time",
             "title": "Created At",
             "type": "string"
           },
           "updated_at": {
+            "description": "Дата",
             "format": "date-time",
             "title": "Updated At",
             "type": "string"
           },
-          "transaction_type": {
-            "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionTypes"
-          },
           "balance_type": {
-            "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.BalanceTypes"
+            "description": "Тип баланса",
+            "title": "Balance Type",
+            "type": "string"
           },
-          "details": {
-            "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionDetailsResponse"
+          "transaction_type": {
+            "description": "Тип транзакции",
+            "title": "Transaction Type",
+            "type": "string"
           },
           "transaction_sum": {
+            "description": "Сумма транзакции",
             "title": "Transaction Sum",
             "type": "number"
           },
-          "method": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Method"
+          "status": {
+            "description": "Статус",
+            "title": "Status",
+            "type": "string"
+          },
+          "caption": {
+            "description": "Описание",
+            "title": "Caption",
+            "type": "string"
           }
         },
         "required": [
           "id",
-          "name_surname",
-          "email",
           "created_at",
           "updated_at",
-          "transaction_type",
           "balance_type",
-          "details",
+          "transaction_type",
           "transaction_sum",
-          "method"
+          "status",
+          "caption"
         ],
         "title": "TransactionResponse",
         "type": "object"
       },
-      "ApiOKResponse[TransactionsResponse].4689802.TransactionTypes": {
-        "enum": ["replenishment", "withdraw", "ref_award"],
-        "title": "TransactionTypes",
-        "type": "string"
-      },
       "ApiOKResponse[TransactionsResponse].4689802.TransactionsResponse": {
-        "properties": {
-          "current_page": {
-            "title": "Current Page",
-            "type": "integer"
-          },
-          "total_pages": {
-            "title": "Total Pages",
-            "type": "integer"
-          },
-          "transactions": {
-            "items": {
-              "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionResponse"
-            },
-            "title": "Transactions",
-            "type": "array"
-          }
+        "items": {
+          "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionResponse"
         },
-        "required": ["current_page", "total_pages", "transactions"],
         "title": "TransactionsResponse",
-        "type": "object"
+        "type": "array"
       },
       "ApiOKResponse[TransactionsTypesResponse].4689802": {
         "properties": {
@@ -3847,7 +3829,7 @@
             "anyOf": [
               {
                 "items": {
-                  "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.Captions"
+                  "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.Captions"
                 },
                 "type": "array"
               },
@@ -5026,7 +5008,7 @@
           "balance_type": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.BalanceTypes"
+                "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.BalanceTypes"
               }
             ],
             "default": null,
@@ -5035,7 +5017,7 @@
           "transaction_type": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ApiOKResponse[TransactionsResponse].4689802.TransactionTypes"
+                "$ref": "#/components/schemas/ApiOKResponse[TransactionResponse].4689802.TransactionTypes"
               }
             ],
             "default": null,
