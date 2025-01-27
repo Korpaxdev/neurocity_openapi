@@ -39,12 +39,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -110,12 +111,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -181,12 +183,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -252,12 +255,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -323,12 +327,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -403,12 +408,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -483,12 +489,13 @@
             "name": "to_dt",
             "in": "query",
             "schema": {
+              "default": null,
               "description": "Конец периода",
               "format": "date",
               "title": "To Dt",
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Конец периода"
           },
           {
@@ -4588,6 +4595,7 @@
             "type": "string"
           },
           "to_dt": {
+            "default": null,
             "description": "Конец периода",
             "format": "date",
             "title": "To Dt",
@@ -4606,7 +4614,7 @@
             "type": "integer"
           }
         },
-        "required": ["from_dt", "to_dt"],
+        "required": ["from_dt"],
         "title": "OperationsParams",
         "type": "object"
       },
@@ -4955,6 +4963,7 @@
             "type": "string"
           },
           "to_dt": {
+            "default": null,
             "description": "Конец периода",
             "format": "date",
             "title": "To Dt",
@@ -4970,7 +4979,7 @@
             "description": "Группировка статистики"
           }
         },
-        "required": ["from_dt", "to_dt"],
+        "required": ["from_dt"],
         "title": "StatisticsParams",
         "type": "object"
       },
@@ -5000,6 +5009,7 @@
             "type": "string"
           },
           "to_dt": {
+            "default": null,
             "description": "Конец периода",
             "format": "date",
             "title": "To Dt",
@@ -5036,7 +5046,7 @@
             "type": "integer"
           }
         },
-        "required": ["from_dt", "to_dt"],
+        "required": ["from_dt"],
         "title": "TransactionsParams",
         "type": "object"
       },
