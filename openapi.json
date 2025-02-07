@@ -13,6 +13,9 @@
     },
     {
       "name": "articles"
+    },
+    {
+      "name": "coupons"
     }
   ],
   "paths": {
@@ -2361,6 +2364,46 @@
           }
         }
       }
+    },
+    "/coupons/buy": {
+      "post": {
+        "summary": "/coupons/buy",
+        "operationId": "post__coupons_buy",
+        "description": "<br/><b>200</b>: <a href='/schemas/ApiOKResponse[BuyCouponsResponse].4689802'>ApiOKResponse[BuyCouponsResponse]</a><br/><b>422</b>: <a href='/schemas/ApiErrorResponse.4689802'>ApiErrorResponse</a><br/><br/>",
+        "tags": ["coupons"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOKResponse[BuyCouponsResponse].4689802"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse.4689802"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyCouponsRequest.1f24123"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2651,6 +2694,56 @@
         },
         "required": ["id", "name_surname", "email"],
         "title": "BaseUserResponse",
+        "type": "object"
+      },
+      "ApiOKResponse[BuyCouponsResponse].4689802": {
+        "properties": {
+          "status": {
+            "examples": ["success"],
+            "title": "Status",
+            "type": "string"
+          },
+          "code": {
+            "examples": [0],
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "examples": ["OK"],
+            "title": "Message",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiOKResponse[BuyCouponsResponse].4689802.BuyCouponsResponse"
+          }
+        },
+        "required": ["status", "code", "message", "data"],
+        "title": "ApiOKResponse[BuyCouponsResponse]",
+        "type": "object"
+      },
+      "ApiOKResponse[BuyCouponsResponse].4689802.BuyCouponsResponse": {
+        "properties": {
+          "balance": {
+            "description": "Баланс после покупки купонов",
+            "title": "Balance",
+            "type": "number"
+          },
+          "balance_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BuyCouponsRequest.1f24123.BalanceType"
+              }
+            ],
+            "description": "Тип баланса"
+          },
+          "coupons": {
+            "description": "Количество купонов",
+            "title": "Coupons",
+            "type": "integer"
+          }
+        },
+        "required": ["balance", "balance_type", "coupons"],
+        "title": "BuyCouponsResponse",
         "type": "object"
       },
       "ApiOKResponse[CreateShopsResponse].4689802": {
@@ -4373,6 +4466,32 @@
         },
         "title": "ArticlesParams",
         "type": "object"
+      },
+      "BuyCouponsRequest.1f24123": {
+        "properties": {
+          "balance_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BuyCouponsRequest.1f24123.BalanceType"
+              }
+            ],
+            "description": "Тип баланса. Возможные значения: main, advertisement"
+          },
+          "count": {
+            "description": "Количество купонов. Минимальное количество 1",
+            "minimum": 1,
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": ["balance_type", "count"],
+        "title": "BuyCouponsRequest",
+        "type": "object"
+      },
+      "BuyCouponsRequest.1f24123.BalanceType": {
+        "enum": ["main", "advertisement"],
+        "title": "BalanceType",
+        "type": "string"
       },
       "CreateShopsRequest.1814de5": {
         "properties": {
